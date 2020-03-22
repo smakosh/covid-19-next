@@ -65,17 +65,15 @@ export default ({
           </Card>
         </Item>
       </Flex>
-      {countries && (
-        <Countries>
-          <Select
-            options={countries.map(item => ({
-              label: item[0],
-              value: item[1]
-            }))}
-            onChange={e => router.push(`/${e.value}`)}
-          />
-        </Countries>
-      )}
+      <Countries>
+        <Select
+          options={countries.map(item => ({
+            label: item[0],
+            value: item[1]
+          }))}
+          onChange={e => router.push(`/${e.value}`)}
+        />
+      </Countries>
       <Doughnut
         data={{
           datasets: [
