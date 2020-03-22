@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const Wrapper = styled.div`
-  padding: 2rem 0;
+  padding: 1rem 0;
   display: flex;
   flex-direction: column;
   text-align: center;
@@ -11,26 +11,48 @@ export const Wrapper = styled.div`
 
     > canvas {
       margin-bottom: 2rem;
+
+      @media (max-width: 680px) {
+        margin-bottom: 0.5rem;
+      }
     }
   }
 `;
 
 export const Card = styled.div`
   text-align: center;
-  padding: 2rem;
+  padding: 2rem 1rem;
   border-radius: 20px;
   background: #ffffff;
   box-shadow: 8px 8px 30px #e3e3e3, -8px -8px 30px #ffffff;
 
+  @media (max-width: 680px) {
+    padding: 0.5rem;
+  }
+
   h1 {
-    font-size: 26pt;
+    font-size: 22pt;
     font-weight: normal;
+
+    @media (max-width: 1100px) {
+      font-size: 18pt;
+    }
+
+    @media (max-width: 680px) {
+      margin-bottom: 0.5rem;
+      font-size: 16pt;
+    }
   }
 
   p {
     color: ${({ color }) => color};
-    font-size: 36pt;
+    font-size: 32pt;
     font-weight: bold;
+
+    @media (max-width: 680px) {
+      margin: 0.5rem 0;
+      font-size: 24pt;
+    }
   }
 `;
 

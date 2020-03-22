@@ -85,18 +85,26 @@ export default ({
             value: item[1]
           }))}
           onChange={e => router.push(`/${e.value}`)}
+          defaultValue={{
+            label: country
+              ? countries.find(item => item[1] === country)[0]
+              : "Select a country",
+            value: country
+              ? countries.find(item => item[1] === country)[1]
+              : "Select a country"
+          }}
         />
       </Countries>
       <Doughnut
         data={{
           datasets: [
             {
-              data: [deaths?.value, recovered?.value, confirmed?.value],
-              backgroundColor: ["#f44336", "#4CAF50", "#5E35B1"],
-              hoverBackgroundColor: ["#ff5252", "#00E676", "#7C4DFF"]
+              data: [deaths?.value, recovered?.value, activeCases],
+              backgroundColor: ["#f44336", "#4CAF50", "#ffb700"],
+              hoverBackgroundColor: ["#ff5252", "#00E676", "#ffb700"]
             }
           ],
-          labels: ["Deaths", "Recovered", "Confirmed"]
+          labels: ["Deaths", "Recovered", "Active"]
         }}
         width={100}
         height={40}
