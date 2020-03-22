@@ -2,7 +2,7 @@ import fetch from "node-fetch";
 import Stats from "../components/Stats";
 import SEO from "../components/common/SEO";
 
-const Home = ({ stats, country, countries }) => (
+export default ({ stats, country, countries }) => (
   <>
     <SEO />
     <Stats
@@ -47,5 +47,3 @@ export const getStaticProps = async ({ params: { country } }) => {
     }
   };
 };
-
-export default Home;
