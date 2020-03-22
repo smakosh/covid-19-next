@@ -33,7 +33,7 @@ export default ({
             <h1>Confirmed</h1>
             <p>
               <NumberFormat
-                value={confirmed.value}
+                value={confirmed?.value}
                 displayType={"text"}
                 thousandSeparator={true}
               />
@@ -45,7 +45,7 @@ export default ({
             <h1>Deaths</h1>
             <p>
               <NumberFormat
-                value={deaths.value}
+                value={deaths?.value}
                 displayType={"text"}
                 thousandSeparator={true}
               />
@@ -57,7 +57,7 @@ export default ({
             <h1>Recovered</h1>
             <p>
               <NumberFormat
-                value={recovered.value}
+                value={recovered?.value}
                 displayType={"text"}
                 thousandSeparator={true}
               />
@@ -80,7 +80,7 @@ export default ({
         data={{
           datasets: [
             {
-              data: [deaths.value, recovered.value, confirmed.value],
+              data: [deaths?.value, recovered?.value, confirmed?.value],
               backgroundColor: ["#f44336", "#4CAF50", "#5E35B1"],
               hoverBackgroundColor: ["#ff5252", "#00E676", "#7C4DFF"]
             }
