@@ -1,13 +1,10 @@
-import Head from "next/head";
 import fetch from "node-fetch";
 import Stats from "../components/Stats";
+import SEO from "../components/common/SEO";
 
 const Home = ({ stats }) => (
   <div className="container">
-    <Head>
-      <title>Corona stats</title>
-      <link rel="icon" href="/favicon.ico" />
-    </Head>
+    <SEO />
     <Stats stats={stats} />
   </div>
 );
