@@ -1,9 +1,10 @@
 import styled from "styled-components";
 
 export const Wrapper = styled.div`
-  padding: 4rem 0;
+  padding: 2rem 0;
   display: flex;
   flex-direction: column;
+  text-align: center;
 
   @media (max-width: 960px) {
     flex-direction: column-reverse;
@@ -30,5 +31,24 @@ export const Card = styled.div`
     color: ${({ color }) => color};
     font-size: 36pt;
     font-weight: bold;
+  }
+`;
+
+export const Countries = styled.div`
+  max-width: 40%;
+  width: 100%;
+  text-align: left;
+  margin: 1rem auto;
+
+  .css-2b097c-container {
+    width: 100%;
+  }
+
+  @media (max-width: 1200px) {
+    max-width: 50%;
+  }
+
+  @media (max-width: 960px) {
+    max-width: 90%;
   }
 `;
