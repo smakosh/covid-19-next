@@ -29,8 +29,8 @@ export default ({
         />
       )}
       <Flex css="margin-bottom: 4rem;" align="flex-start">
-        <Item col={3} colTablet={12} colMobile={12} gap={2} marginBottom={30}>
-          <Card color="#ffb700">
+        <Item col={3} colTablet={12} colMobile={12} gap={1} marginBottom={30}>
+          <Card color="#5E35B1">
             <h1>Confirmed</h1>
             <p>
               <NumberFormat
@@ -41,8 +41,8 @@ export default ({
             </p>
           </Card>
         </Item>
-        <Item col={3} colTablet={12} colMobile={12} gap={2} marginBottom={30}>
-          <Card color="#5E35B1">
+        <Item col={3} colTablet={12} colMobile={12} gap={1} marginBottom={30}>
+          <Card color="#ffb700">
             <h1>Active Cases</h1>
             <p>
               <NumberFormat
@@ -53,7 +53,7 @@ export default ({
             </p>
           </Card>
         </Item>
-        <Item col={3} colTablet={12} colMobile={12} gap={2} marginBottom={30}>
+        <Item col={3} colTablet={12} colMobile={12} gap={1} marginBottom={30}>
           <Card color="#f44336">
             <h1>Deaths</h1>
             <p>
@@ -65,7 +65,7 @@ export default ({
             </p>
           </Card>
         </Item>
-        <Item col={3} colTablet={12} colMobile={12} gap={2}>
+        <Item col={3} colTablet={12} colMobile={12} gap={1}>
           <Card color="#4CAF50">
             <h1>Recovered</h1>
             <p>
@@ -91,7 +91,7 @@ export default ({
         data={{
           datasets: [
             {
-              data: [deaths?.value, recovered?.value, activeCases],
+              data: [deaths?.value, recovered?.value, confirmed?.value],
               backgroundColor: ["#f44336", "#4CAF50", "#5E35B1"],
               hoverBackgroundColor: ["#ff5252", "#00E676", "#7C4DFF"]
             }
