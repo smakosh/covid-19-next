@@ -1,0 +1,9 @@
+{
+  "name": "Corona stats",
+  "short_name": "Corona stats",
+  "theme_color": "#2196f3",
+  "background_color": "#2196f3",
+  "display": "fullscreen",
+  "scope": "/",
+  "start_url": "/"
+}
