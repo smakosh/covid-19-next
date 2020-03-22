@@ -13,7 +13,7 @@ export default ({
   countries
 }) => {
   const router = useRouter();
-  const activeCases = confirmed.value - deaths.value - recovered.value
+  const activeCases = confirmed?.value - deaths?.value - recovered?.value;
   return (
     <Wrapper as={Container}>
       {country && (
