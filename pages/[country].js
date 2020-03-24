@@ -5,23 +5,21 @@ import SEO from "../components/common/SEO";
 export default ({ stats, country, countries }) => (
   <>
     <SEO />
-    <Stats
-      stats={stats}
-      country={country}
-      countries={Object.entries(countries)}
-    />
+    <Stats stats={stats} country={country} countries={countries} />
   </>
 );
 
 export const getStaticPaths = async () => {
   const res = await fetch("https://covid19.mathdro.id/api/countries");
-  const data = await res.json();
+  const { countries } = await res.json();
 
-  const paths = Object.entries(data.countries).map(item => ({
-    params: {
-      country: item[1]
-    }
-  }));
+  const paths = countries
+    .filter(item => typeof item.iso2 !== "undefined")
+    .map(({ iso2 }) => ({
+      params: {
+        country: iso2 || "/404"
+      }
+    }));
 
   return {
     paths,
@@ -42,7 +40,9 @@ export const getStaticProps = async ({ params: { country } }) => {
     revalidate: 8,
     props: {
       stats: data,
-      countries,
+      countries: Object.entries(countries).filter(
+        ([_, item]) => typeof item.iso2 !== "undefined"
+      ),
       country
     }
   };

@@ -8,14 +8,7 @@ export const Wrapper = styled.div`
 
   @media (max-width: 960px) {
     flex-direction: column-reverse;
-
-    > canvas {
-      margin-bottom: 2rem;
-
-      @media (max-width: 680px) {
-        margin-bottom: 0.5rem;
-      }
-    }
+    padding: 1rem 0 0 0;
   }
 `;
 
@@ -24,43 +17,44 @@ export const Card = styled.div`
   padding: 2rem 1rem;
   border-radius: 20px;
   background: #ffffff;
-  box-shadow: 8px 8px 30px #e3e3e3, -8px -8px 30px #ffffff;
+  box-shadow: 0 8px 30px -8px #ddd;
 
   @media (max-width: 680px) {
     padding: 0.5rem;
   }
 
   h1 {
+    margin-bottom: 1rem;
     font-size: 22pt;
     font-weight: normal;
 
     @media (max-width: 1100px) {
+      margin: 0;
       font-size: 18pt;
     }
 
     @media (max-width: 680px) {
-      margin-bottom: 0.5rem;
       font-size: 16pt;
     }
   }
 
   p {
+    margin: 0;
     color: ${({ color }) => color};
     font-size: 32pt;
     font-weight: bold;
 
     @media (max-width: 680px) {
-      margin: 0.5rem 0;
       font-size: 24pt;
     }
   }
 `;
 
 export const Countries = styled.div`
-  max-width: 40%;
+  margin: 0 auto 2rem;
+  max-width: 16rem;
   width: 100%;
   text-align: left;
-  margin: 1rem auto;
 
   .css-2b097c-container {
     width: 100%;
@@ -73,4 +67,18 @@ export const Countries = styled.div`
   @media (max-width: 960px) {
     max-width: 90%;
   }
+`;
+
+export const Flag = styled.div`
+  margin: 2rem 0;
+  font-size: 4rem;
+
+  @media (max-width: 680px) {
+    font-size: 3rem;
+    margin: 0;
+  }
+`;
+
+export const ChartWrapper = styled.div`
+  position: relative;
 `;

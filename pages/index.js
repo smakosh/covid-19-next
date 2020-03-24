@@ -5,7 +5,7 @@ import SEO from "../components/common/SEO";
 export default ({ stats, countries }) => (
   <>
     <SEO />
-    <Stats stats={stats} countries={Object.entries(countries)} />
+    <Stats stats={stats} countries={countries} />
   </>
 );
 
@@ -20,7 +20,9 @@ export const getStaticProps = async () => {
     revalidate: 8,
     props: {
       stats: data,
-      countries
+      countries: Object.entries(countries).filter(
+        ([_, item]) => typeof item.iso2 !== "undefined"
+      )
     }
   };
 };
