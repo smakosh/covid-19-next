@@ -1,11 +1,11 @@
 import NumberFormat from "react-number-format";
-import ReactCountryFlag from "react-country-flag";
 import Select from "react-select";
 import { useRouter } from "next/router";
 import { Flex, Item } from "react-flex-ready";
 import { Doughnut } from "react-chartjs-2";
+import flags from "emoji-flags";
 import Container from "../common/Container";
-import { Wrapper, Card, Countries } from "./styles";
+import { Wrapper, Card, Countries, Flag, ChartWrapper } from "./styles";
 
 export default ({
   stats: { confirmed, recovered, deaths },
@@ -17,18 +17,15 @@ export default ({
   return (
     <Wrapper as={Container}>
       {country && (
-        <ReactCountryFlag
-          countryCode={country}
-          svg
-          style={{
-            width: "6em",
-            height: "6em",
-            margin: "0 auto"
-          }}
-          title={country}
-        />
+        <Flag>
+          {
+            flags.countryCode(
+              countries.find(([_, item]) => item.name === country)[1].iso2
+            ).emoji
+          }
+        </Flag>
       )}
-      <Flex css="margin-bottom: 4rem;" align="flex-start">
+      <Flex align="flex-start">
         <Item col={3} colTablet={12} colMobile={12} gap={1} marginBottom={30}>
           <Card color="#5E35B1">
             <h1>Confirmed</h1>
@@ -80,41 +77,44 @@ export default ({
       </Flex>
       <Countries>
         <Select
-          options={countries.map(item => ({
-            label: item[0],
-            value: item[1]
+          options={countries.map(([_, item]) => ({
+            label: item.name,
+            value: item.name
           }))}
           onChange={e => router.push(`/${e.value}`)}
           defaultValue={{
             label: country
-              ? countries.find(item => item[1] === country)[0]
+              ? countries.find(([_, item]) => item.name === country) && country
               : "Select a country",
             value: country
-              ? countries.find(item => item[1] === country)[1]
+              ? countries.find(([_, item]) => item.name === country) && country
               : "Select a country"
           }}
         />
       </Countries>
-      <Doughnut
-        data={{
-          datasets: [
-            {
-              data: [deaths?.value, recovered?.value, activeCases],
-              backgroundColor: ["#f44336", "#4CAF50", "#ffb700"],
-              hoverBackgroundColor: ["#ff5252", "#00E676", "#ffb700"]
+      <ChartWrapper>
+        <Doughnut
+          data={{
+            datasets: [
+              {
+                data: [deaths?.value, recovered?.value, activeCases],
+                backgroundColor: ["#f44336", "#4CAF50", "#ffb700"],
+                hoverBackgroundColor: ["#ff5252", "#00E676", "#ffb700"]
+              }
+            ],
+            labels: ["Deaths", "Recovered", "Active"]
+          }}
+          width={160}
+          height={256}
+          options={{
+            maintainAspectRatio: false,
+            legend: {
+              display: true,
+              position: "bottom"
             }
-          ],
-          labels: ["Deaths", "Recovered", "Active"]
-        }}
-        width={100}
-        height={40}
-        options={{
-          legend: {
-            display: true,
-            position: "bottom"
-          }
-        }}
-      />
+          }}
+        />
+      </ChartWrapper>
     </Wrapper>
   );
 };
