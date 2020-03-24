@@ -19,7 +19,7 @@ export const getStaticPaths = async () => {
 
   const paths = Object.entries(data.countries).map(item => ({
     params: {
-      country: item[1].name || null
+      country: item[1].name
     }
   }));
 
