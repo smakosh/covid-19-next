@@ -6,6 +6,7 @@ import { Doughnut } from "react-chartjs-2";
 import flags from "emoji-flags";
 import Container from "../common/Container";
 import { Wrapper, Card, Countries, Flag, ChartWrapper } from "./styles";
+import { LAST_VISITED_COUNTRY } from "../../constants";
 
 export default ({
   stats: { confirmed, recovered, deaths },
@@ -14,15 +15,22 @@ export default ({
 }) => {
   const router = useRouter();
   const activeCases = confirmed?.value - deaths?.value - recovered?.value;
+
+  const handleChange = event => {
+    const { value } = event;
+    localStorage.setItem(LAST_VISITED_COUNTRY, value);
+    router.push(`/${value}`);
+  };
+
+  const flag = country && flags.countryCode(
+    countries.find(([_, item]) => item.iso2 === country)[1].iso2
+  )
+  
   return (
     <Wrapper as={Container}>
-      {country && (
+      {flag && (
         <Flag>
-          {
-            flags.countryCode(
-              countries.find(([_, item]) => item.iso2 === country)[1].iso2
-            ).emoji
-          }
+          {flag.emoji}
         </Flag>
       )}
       <Flex align="flex-start">
@@ -81,7 +89,7 @@ export default ({
             label: item.name,
             value: item.iso2
           }))}
-          onChange={e => router.push(`/${e.value}`)}
+          onChange={handleChange}
           defaultValue={{
             label: country
               ? countries.find(([_, item]) => item.iso2 === country)[1].name
