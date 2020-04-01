@@ -2,7 +2,7 @@ import { createGlobalStyle } from "styled-components";
 
 export default createGlobalStyle`
   * {
-    font-family: "Roboto", sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
     font-weight: 400;
   }
 
