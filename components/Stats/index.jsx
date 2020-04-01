@@ -16,17 +16,15 @@ export default ({
   const activeCases = confirmed?.value - deaths?.value - recovered?.value;
   return (
     <Wrapper as={Container}>
-      {country ||
-        country !== "XK" ||
-        (country !== "/" && (
-          <Flag>
-            {
-              flags.countryCode(
-                countries.find(([_, item]) => item.iso2 === country)[1].iso2
-              ).emoji
-            }
-          </Flag>
-        ))}
+      {country && country !== "XK" && country !== "/" && (
+        <Flag>
+          {
+            flags.countryCode(
+              countries.find(([_, item]) => item.iso2 === country)[1].iso2
+            ).emoji
+          }
+        </Flag>
+      )}
       <Flex align="flex-start">
         <Item col={3} colTablet={12} colMobile={12} gap={1} marginBottom={30}>
           <Card color="#356bb1">
