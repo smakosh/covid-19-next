@@ -78,7 +78,7 @@ export default ({
       <Countries>
         <label htmlFor="country">Select a country</label>
         <Select
-          id="country"
+          inputId="country"
           options={countries.map(([_, item]) => ({
             label: item.name,
             value: item.iso2
