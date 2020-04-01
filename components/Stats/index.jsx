@@ -78,7 +78,9 @@ export default ({
         </Item>
       </Flex>
       <Countries>
+        <label htmlFor="country">Select a country</label>
         <Select
+          id="country"
           options={countries.map(([_, item]) => ({
             label: item.name,
             value: item.iso2
