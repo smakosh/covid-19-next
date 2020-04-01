@@ -16,18 +16,20 @@ export default ({
   const activeCases = confirmed?.value - deaths?.value - recovered?.value;
   return (
     <Wrapper as={Container}>
-      {country && (
-        <Flag>
-          {
-            flags.countryCode(
-              countries.find(([_, item]) => item.iso2 === country)[1].iso2
-            ).emoji
-          }
-        </Flag>
-      )}
+      {country ||
+        country !== "XK" ||
+        (country !== "/" && (
+          <Flag>
+            {
+              flags.countryCode(
+                countries.find(([_, item]) => item.iso2 === country)[1].iso2
+              ).emoji
+            }
+          </Flag>
+        ))}
       <Flex align="flex-start">
         <Item col={3} colTablet={12} colMobile={12} gap={1} marginBottom={30}>
-          <Card color="#5E35B1">
+          <Card color="#356bb1">
             <h1>Confirmed</h1>
             <p>
               <NumberFormat
@@ -39,7 +41,7 @@ export default ({
           </Card>
         </Item>
         <Item col={3} colTablet={12} colMobile={12} gap={1} marginBottom={30}>
-          <Card color="#ffb700">
+          <Card color="#8008e9">
             <h1>Active Cases</h1>
             <p>
               <NumberFormat
@@ -63,7 +65,7 @@ export default ({
           </Card>
         </Item>
         <Item col={3} colTablet={12} colMobile={12} gap={1}>
-          <Card color="#4CAF50">
+          <Card color="#09920f">
             <h1>Recovered</h1>
             <p>
               <NumberFormat
@@ -98,8 +100,8 @@ export default ({
             datasets: [
               {
                 data: [deaths?.value, recovered?.value, activeCases],
-                backgroundColor: ["#f44336", "#4CAF50", "#ffb700"],
-                hoverBackgroundColor: ["#ff5252", "#00E676", "#ffb700"]
+                backgroundColor: ["#f44336", "#09920f", "#8008e9"],
+                hoverBackgroundColor: ["#ff5252", "#00E676", "#9e3ff1"]
               }
             ],
             labels: ["Deaths", "Recovered", "Active"]
