@@ -4,7 +4,7 @@ import SEO from "../components/common/SEO";
 
 export default ({ stats, country, countries }) => (
   <>
-    <SEO />
+    <SEO title={countries.find(([_, item]) => item.iso2 === country)[1].name} />
     <Stats stats={stats} country={country} countries={countries} />
   </>
 );
@@ -14,16 +14,16 @@ export const getStaticPaths = async () => {
   const { countries } = await res.json();
 
   const paths = countries
-    .filter(item => typeof item.iso2 !== "undefined")
+    .filter((item) => typeof item.iso2 !== "undefined")
     .map(({ iso2 }) => ({
       params: {
-        country: iso2 || "/404"
-      }
+        country: iso2 || "/404",
+      },
     }));
 
   return {
     paths,
-    fallback: false
+    fallback: false,
   };
 };
 
@@ -43,7 +43,7 @@ export const getStaticProps = async ({ params: { country } }) => {
       countries: Object.entries(countries).filter(
         ([_, item]) => typeof item.iso2 !== "undefined"
       ),
-      country
-    }
+      country,
+    },
   };
 };

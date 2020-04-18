@@ -82,3 +82,14 @@ export const Flag = styled.div`
 export const ChartWrapper = styled.div`
   position: relative;
 `;
+
+export const Source = styled.div`
+  display: flex;
+  justify-content: center;
+  padding: 2rem 0;
+
+  span {
+    display: block;
+    margin: 0 1rem;
+  }
+`;
