@@ -20,7 +20,8 @@
     "react-select": "^3.1.0",
     "react-table": "^7.0.0",
     "sitemap": "^6.1.1",
-    "styled-components": "^5.0.1"
+    "styled-components": "^5.0.1",
+    "nprogress": "^0.2.0"
   },
   "devDependencies": {
     "babel-plugin-styled-components": "^1.10.7"
