@@ -2,10 +2,10 @@ import fetch from "node-fetch";
 import Stats from "../components/Stats";
 import SEO from "../components/common/SEO";
 
-export default ({ stats, country, countries }) => (
+export default ({ stats, country, countries, perDay }) => (
   <>
     <SEO title={countries.find(([_, item]) => item.iso2 === country)[1].name} />
-    <Stats stats={stats} country={country} countries={countries} />
+    <Stats stats={stats} country={country} countries={countries} perDay={perDay}/>
   </>
 );
 
@@ -36,6 +36,9 @@ export const getStaticProps = async ({ params: { country } }) => {
   const resCountries = await fetch("https://covid19.mathdro.id/api/countries");
   const { countries } = await resCountries.json();
 
+  const resPerDay = await fetch("https://covid19.mathdro.id/api/daily");
+  let totalPerDay = await resPerDay.json();
+
   return {
     revalidate: 8,
     props: {
@@ -44,6 +47,7 @@ export const getStaticProps = async ({ params: { country } }) => {
         ([_, item]) => typeof item.iso2 !== "undefined"
       ),
       country,
+      perDay: totalPerDay
     },
   };
 };

@@ -3,7 +3,7 @@ import NumberFormat from "react-number-format";
 import Select from "react-select";
 import { useRouter } from "next/router";
 import { Flex, Item } from "react-flex-ready";
-import { Doughnut } from "react-chartjs-2";
+import { Doughnut, Bar } from "react-chartjs-2";
 import flags from "emoji-flags";
 import Container from "../common/Container";
 import { Wrapper, Card, Countries, Flag, ChartWrapper, Source } from "./styles";
@@ -12,7 +12,18 @@ export default ({
   stats: { confirmed, recovered, deaths },
   country,
   countries,
+  perDay
 }) => {
+  const dates = [];
+  const comfirmedPerDay = [];
+  const recoveredPerDay = [];
+  const deathsPerDay = [];
+  perDay.forEach(item => {
+    dates.push(item?.reportDate);
+    comfirmedPerDay.push(item?.confirmed?.total);
+    recoveredPerDay.push(item?.recovered?.total);
+    deathsPerDay.push(item?.deaths?.total);
+  });
   const router = useRouter();
   const activeCases = confirmed?.value - deaths?.value - recovered?.value;
   return (
@@ -117,6 +128,42 @@ export default ({
             labels: ["Deaths", "Recovered", "Active"],
           }}
           width={160}
+          height={256}
+          options={{
+            maintainAspectRatio: false,
+            legend: {
+              display: true,
+              position: "bottom",
+            },
+          }}
+        />
+      </ChartWrapper>
+      <ChartWrapper>
+        <Bar
+          data={{
+            datasets: [ 
+              {
+                label: "Active",
+                data: comfirmedPerDay,
+                backgroundColor: "#8008e9",
+                hoverBackgroundColor: "#8008e9",
+              },
+              {
+                label: "Recovered",
+                data: recoveredPerDay,
+                backgroundColor: "#09920f",
+                hoverBackgroundColor: "#09920f",
+              },
+              {
+                label: "Deaths",
+                data: deathsPerDay,
+                backgroundColor: "#f44336",
+                hoverBackgroundColor: "#f44336",
+              },
+            ],
+            labels: dates,
+          }}
+          width={200}
           height={256}
           options={{
             maintainAspectRatio: false,
