@@ -1,13 +1,20 @@
 import fetch from "node-fetch";
+import Error from 'next/error';
 import Stats from "../components/Stats";
 import SEO from "../components/common/SEO";
 
-export default ({ stats, country, countries }) => (
-  <>
-    <SEO title={countries.find(([_, item]) => item.iso2 === country)[1].name} />
-    <Stats stats={stats} country={country} countries={countries} />
-  </>
-);
+export default ({ stats, country, countries }) => {
+  if(!country) {
+    return <Error statusCode={404} />;
+  }
+
+  return (
+    <>
+      <SEO title={countries.find(([_, item]) => item.iso2 === country)[1].name} />
+      <Stats stats={stats} country={country} countries={countries} />
+    </>
+  )
+};
 
 export const getStaticPaths = async () => {
   const res = await fetch("https://covid19.mathdro.id/api/countries");
