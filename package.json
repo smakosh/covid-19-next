@@ -8,7 +8,7 @@
     "start": "next start"
   },
   "dependencies": {
-    "chart.js": "^2.9.3",
+    "chart.js": "^2.9.4",
     "emoji-flags": "^1.2.0",
     "next": "9.3.2",
     "next-pwa": "^2.3.1",
